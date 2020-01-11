@@ -10,7 +10,9 @@ RUN apt-get update -qq && \
   nodejs \
   default-libmysqlclient-dev \
   vim nano \
-  yarn
+  npm
+
+RUN npm install --global yarn
 
 ENV RAILS_ROOT /app
 
@@ -29,7 +31,8 @@ ENV DB_HOST=db \
     DB_PORT=3306 \
     DB_USER=root \
     DB_PASS=12345678 \
-    DB_NAME=reunion_dev
+    DB_NAME=reunion_dev \
+    RAILS_ENV=development
 
 ENTRYPOINT ["bundle", "exec"]
 

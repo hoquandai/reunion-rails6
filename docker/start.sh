@@ -1,5 +1,6 @@
 #!/bin/bash
 bundle check || bundle install
+yarn info
 
 if [ -f tmp/pids/server.pid ]; then
   rm tmp/pids/server.pid

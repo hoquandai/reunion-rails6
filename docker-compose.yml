@@ -1,0 +1,52 @@
+version: '3.5'
+services:
+  # rails-proxy:
+  #   image: jwilder/nginx-proxy
+  #   container_name: rails-proxy
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #     - ./certs:/etc/nginx/certs
+  #   depends_on:
+  #     - web
+  #   networks:
+  #     - wprails
+
+  web:
+    tty: true
+    stdin_open: true
+    container_name: reunion_web
+    image: hodai.lake/reunion_web:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh docker/start.sh
+    entrypoint: []
+    volumes:
+      - .:/app
+    ports:
+      - "4444:3000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      # MYSQL_DATABASE: moneyfreek_dev
+      # MYSQL_USER: root
+      # MYSQL_PASSWORD: 12345678
+    volumes:
+      - reunion_db:/var/lib/mysql
+    ports:
+      - '2222:3306'
+
+  cache:
+    image: redis:5.0-alpine
+    ports:
+      - '5555:6379'
+
+volumes:
+  reunion_db:

@@ -1,0 +1,43 @@
+#+STARTUP: indent
+* Features
+** Question management
+- CRUD question, each question has
+  + Question
+  + Answer
+  + Time estimation
+  + Dynamic Category
+- Can filter and search questions
+** Test generator
+*** Test Template CRUD, include
+- Name
+- Description
+- Time limit (+/- 5mins)
+- Selected categories and corresponding max number questions
+*** Generated test
+- Select test template
+- Input name of test
+- Description
+- Generate: only select questions with constraints of test template
+*** Can render to HTML for review
+- Include fields:
+  + No.
+  + Questions
+  + Categories
+  + Time estimate
+- Summary
+  + Total time estimation
+  + Total question count
+  + Total count of each categories
+
+
+| No. | Question | Ans | Soft Skills   | Tech Skills | Level   |
+|-----+----------+-----+---------------+-------------+---------|
+|   1 | abc      | 123 | Communication |             | Intern  |
+|     |          |     |               |             | Fresher |
+|     |          |     |               |             | junior  |
+|     |          |     |               |             |         |
+
+*** Can export to CSV
+
+
+
